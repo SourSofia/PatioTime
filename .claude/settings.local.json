@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "PowerShell(git clone https://github.com/DietrichGebert/ponytail.git \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\ponytail\" 2>&1)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://github.com/DietrichGebert/ponytail/archive/refs/heads/main.zip\" -OutFile \"$env:TEMP\\\\ponytail.zip\")",
+      "PowerShell(Expand-Archive -Path \"$env:TEMP\\\\ponytail.zip\" -DestinationPath \"$env:TEMP\\\\ponytail-extract\" -Force; New-Item -ItemType Directory -Force \"$env:USERPROFILE\\\\.claude\\\\plugins\" | Out-Null; Copy-Item \"$env:TEMP\\\\ponytail-extract\\\\ponytail-main\" \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\ponytail\" -Recurse -Force; Write-Output \"Done\")",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\ponytail\\\\hooks\")",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.claude\\\\plugins\\\\ponytail\\\\skills\" -Recurse -Filter \"SKILL.md\" | Select-Object FullName)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design/SKILL.md\" -UseBasicParsing; $r.Content.Length; \"---\"; $r.Content.Substring\\(0,400\\))",
+      "PowerShell($base=\"https://raw.githubusercontent.com/anthropics/skills/main/skills/frontend-design\"; \\(Invoke-WebRequest \"$base/SKILL.md\" -UseBasicParsing\\).Content)",
+      "PowerShell(Get-ChildItem -Path . -Depth 2 -Exclude node_modules -File | Where-Object { $_.Extension -in '.html', '.jsx', '.tsx', '.js', '.css', '.json' } | Select-Object FullName | head -50)",
+      "PowerShell(Get-ChildItem -Path . -Recurse -Depth 3 -Exclude node_modules -ErrorAction SilentlyContinue | Where-Object { $_.Extension -in '.html', '.jsx', '.tsx', '.js', '.css', '.json' -and $_.FullName -notmatch 'node_modules' } | Select-Object -First 30 FullName)",
+      "PowerShell(Get-ChildItem -Path . -Recurse -Depth 1 | Where-Object { \\($_.Name -match \"vite|tailwind|config\" -or $_.Name -match \"\\\\.config\\\\.\" -or $_.Name -eq \"src\"\\) -and $_.FullName -notmatch 'node_modules' } | Select-Object Name)"
+    ]
+  }
+}

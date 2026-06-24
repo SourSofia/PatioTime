@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat:wght@300;400;500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .slick-arrow { background:none; border:none; cursor:pointer; padding:0.5rem; color:rgba(255,255,255,0.45); transition:color 0.25s; }
+    .slick-arrow:hover { color:white; }
+    .slick-arrow .ln-a,
+    .slick-arrow .ln-b { position:absolute; left:0; top:50%; margin-top:-0.75px; width:70px; height:1.5px; background:currentColor; border-radius:1px; transition:transform 0.25s ease; }
+    .slick-arrow.arrow-next .ln-a { transform-origin:right center; }
+    .slick-arrow.arrow-next .ln-b { transform-origin:right center; }
+    .slick-arrow.arrow-next:hover .ln-a { transform:translateX(30px) rotate(-40deg) scaleX(0.6); }
+    .slick-arrow.arrow-next:hover .ln-b { transform:translateX(30px) rotate(40deg)  scaleX(0.6); }
+    .slick-arrow.arrow-prev .ln-a { transform-origin:left center; }
+    .slick-arrow.arrow-prev .ln-b { transform-origin:left center; }
+    .slick-arrow.arrow-prev:hover .ln-a { transform:translateX(-30px) rotate(40deg)  scaleX(0.6); }
+    .slick-arrow.arrow-prev:hover .ln-b { transform:translateX(-30px) rotate(-40deg) scaleX(0.6); }
+    .discover-link { position:relative; }
+    .discover-link::after { content:''; position:absolute; bottom:-5px; left:0; width:100%; height:2px; background:#f97316; transform-origin:right; transition:transform 0.25s ease; }
+    .discover-link:hover::after { transform:scaleX(0); }
+  </style>
+</head>
+<body class="font-['Montserrat',sans-serif] bg-black min-h-screen text-white overflow-x-hidden flex flex-col items-center relative"> <img src="/src/assets/video-bg-fallback.jpg" alt="" class="md:hidden fixed inset-0 w-full h-full object-cover object-center z-0"> <div class="hidden md:block absolute inset-x-0 top-0 h-screen overflow-hidden pointer-events-none z-0"> <iframe 
+      src="https://www.youtube.com/embed/W-JKSt5Lg6c?controls=0&rel=0&playsinline=1&autoplay=1&mute=1&loop=1&playlist=W-JKSt5Lg6c&showinfo=0&modestbranding=1" 
+      allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[56.25vw] min-h-screen min-w-[177.78vh] border-none"
+    ></iframe>
+  </div>
+
+  <div class="absolute inset-x-0 top-0 h-[100vh] bg-black/45 z-0"></div>
+
+
+  <header class="w-full self-stretch bg-transparent relative z-10">
+    <div class="hidden lg:flex justify-center border-b border-white/10 w-full">
+      <div class="flex items-center justify-between w-full text-white tracking-wider font-['Jost',sans-serif]" style="padding: 20px; max-width: 1200px; font-size:14px">
+        <a href="https://www.google.com/maps/place/Barbican" class="flex flex-1 items-center gap-2">
+          <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          Silk St, Barbican, London EC2Y 8DS, UK
+        </a>
+        <div class="flex flex-1 items-center justify-end gap-6">
+          <a href="tel:+39-055-123456" class="flex items-center gap-2">
+            <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+            </svg>
+            +39-055-123456
+          </a>
+          <a href="mailto:booking@patiotime.com" class="flex items-center gap-2">
+            <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+            </svg>
+            booking@patiotime.com
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex justify-center">
+      <div class="w-full max-w-7xl">
+      <nav class="flex items-center justify-between py-6" style="margin-top: 20px; padding-left: 61.440px; padding-right: 61.440px;">
+        <div class="flex items-center gap-5">
+          <button id="menu-open-btn" class="text-white hover:text-orange-500 transition-colors" aria-label="Menu">
+            <svg class="w-6 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 20">
+              <line x1="0" y1="6" x2="24" y2="6"/>
+              <line x1="0" y1="14" x2="24" y2="14"/>
+            </svg>
+          </button>
+          <span class="hidden md:flex items-center gap-2 text-sm text-white tracking-widest">
+            <a href="#" class="hover:text-white transition-colors">EN</a>
+            <span>–</span>
+            <a href="#" class="hover:text-white transition-colors">IT</a>
+          </span>
+        </div>
+
+        <div class="flex justify-center">
+          <a href="#">
+            <img src="/src/assets/bar-logo.png" alt="Patio Time" style="width:190px;height:61px">
+          </a>
+        </div>
+
+        <div class="flex items-center justify-end gap-5">
+          <span class="md:hidden flex items-center gap-2 text-sm text-gray-400 tracking-widest">
+            <a href="#" class="hover:text-white transition-colors">EN</a>
+            <span>–</span>
+            <a href="#" class="hover:text-white transition-colors">IT</a>
+          </span>
+            <a href="#" id="find-table-btn" class="nav-btn">
+              FIND A TABLE
+            </a>
+        </div>
+      </nav>
+      </div>
+    </div>
+  </header>
+
+  <nav id="sticky-nav" class="fixed top-0 left-0 right-0 z-50 -translate-y-full transition-transform duration-300 ease-in-out" style="padding-top:20px;padding-bottom:10px;background:linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 70%, transparent 100%)">
+    <div class="w-full flex justify-center">
+      <div class="w-full max-w-7xl">
+        <div class="flex items-center justify-between py-4" style="padding-left:61.440px;padding-right:61.440px;">
+          <div class="flex items-center gap-5">
+            <button onclick="document.getElementById('menu-open-btn').click()" class="text-white hover:text-orange-500 transition-colors" aria-label="Menu">
+              <svg class="w-6 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 20"><line x1="0" y1="6" x2="24" y2="6"/><line x1="0" y1="14" x2="24" y2="14"/></svg>
+            </button>
+            <span class="hidden md:flex items-center gap-2 text-sm text-white tracking-widest">
+              <a href="#" class="hover:text-white transition-colors">EN</a><span>–</span><a href="#" class="hover:text-white transition-colors">IT</a>
+            </span>
+          </div>
+          <a href="#"><img src="/src/assets/bar-logo.png" alt="Patio Time" style="width:190px;height:61px"></a>
+          <div class="flex items-center justify-end gap-5">
+            <a href="#" id="find-table-btn-sticky" class="nav-btn">FIND A TABLE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="relative w-full max-w-7xl mx-auto overflow-hidden flex flex-col shrink-0 z-10">
+
+    <section class="relative min-h-[90vh] w-full flex flex-col justify-center items-center overflow-hidden bg-transparent">
+      <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 -translate-y-24">
+        <h1 class="font-['Cormorant_Garamond',Georgia,serif] text-white leading-tight">
+          <span class="block font-light italic text-5xl lg:text-[98px]"><em>Welcome</em> to</span>
+          <span class="block mt-1 text-5xl lg:text-[98px]"><strong class="text-orange-500">PatioTime</strong> Bar</span>
+        </h1>
+        <p class="mt-6 tracking-widest text-white font-medium font-['Jost',sans-serif]" style="font-size:24px">DRINK . MUSIC . PLAY</p>
+      </div>
+
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 text-white tracking-wider -translate-y-16 font-['Jost',sans-serif] whitespace-nowrap" style="font-size:18px">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+        </svg>
+        Opening Hours: 18:00 – 02:00
+      </div>
+    </section>
+
+    <section class="bg-black py-0 relative z-10 w-full" style="margin-top: 80px; margin-bottom: 80px;">
+      <div class="flex items-stretch my-20" style="margin-top: 0px;">
+        <div class="hidden lg:block w-[30%] shrink-0">
+          <img src="/src/assets/img-16.png" alt="Bar interior" class="w-full h-full object-cover">
+        </div>
+
+        <div class="flex flex-col items-center justify-center text-center px-10 py-20 lg:py-24 flex-1" style="max-width: calc(100% - 20px)">
+          <p class="tracking-tight text-amber-600 uppercase mb-4 font-['Jost',sans-serif] font-bold" style="margin-bottom: 20px; font-size:13px">Patio Bar's Story</p>
+          <h2 class="font-['Cormorant_Garamond',Georgia,serif] text-white font-light mb-6" style="margin-bottom: 20px; font-size:74px">About Us</h2>
+          <p class="text-white leading-relaxed max-w-sm font-['Jost',sans-serif]" style="font-size:18px">
+            A relaxing and pleasant atmosphere, good jazz, dinner and cocktails. The PatioTime Bar opens in the centre of Florence. The only bar inspired by the 1960s, it will give you a cocktail experience that you'll have a hard time forgetting.
+          </p>
+          <a href="#" class="discover-link text-white tracking-tight uppercase transition-colors font-medium" style="margin-top: 40px; font-size:13px">
+            Discover More
+          </a>
+        </div>
+
+        <div class="hidden lg:block w-[30%] shrink-0">
+          <img src="/src/assets/img-17.png" alt="Bartender" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+  </div> 
+  
+  <section class="relative w-full h-[60vh] md:h-[70vh] overflow-hidden z-10 shrink-0" style="margin-top: 60px;">
+    <img src="/src/assets/section-bg-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="relative z-10 h-full flex items-center justify-center">
+      <img src="/src/assets/experience-text.png" alt="The Best Experience" class="w-full max-w-5xl px-8">
+    </div>
+  </section>
+
+
+  <section class="w-full self-stretch bg-black py-16 z-10 flex justify-center" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="w-full max-w-7xl relative">
+    <button id="c-prev" class="slick-arrow arrow-prev absolute -left-10 top-1/2 -translate-y-1/2 z-10" style="margin-top:-30px; width:80px; height:60px;" aria-label="Previous">
+      <span class="ln-a"></span>
+      <span class="ln-b"></span>
+    </button>
+
+    <button id="c-next" class="slick-arrow arrow-next absolute -right-10 top-1/2 -translate-y-1/2 z-10" style="margin-top:-30px; width:80px; height:60px;" aria-label="Next">
+      <span class="ln-a"></span>
+      <span class="ln-b"></span>
+    </button>
+    <div class="relative">
+      <div class="overflow-hidden mx-16">
+        <div id="c-track" class="flex gap-15" style="transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform;">
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-12.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-13.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-14.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-15.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/andrea-riezzo-1hKZ0A182Bk-unsplash-2.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/food-photographer-david-fedulov-aI5CWpiOOZM-unsplash.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <!-- clones for seamless wrap -->
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-12.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-13.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+          <div class="flex-none w-[calc(25%-45px)]"><img src="/src/assets/img-14.jpg" class="w-full aspect-3/4 object-cover" alt=""></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-1 mt-10" style="margin-top: 40px;">
+      <button class="c-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="0"><span style="width:8px;height:8px;border-radius:50%;background:white;pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+      <button class="c-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="1"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+      <button class="c-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="2"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+      <button class="c-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="3"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+      <button class="c-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="4"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+      <button class="c-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="5"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+    </div>
+    </div>
+  </section>
+
+  <section class="relative w-full overflow-hidden z-10 shrink-0" style="height: calc(55vh)">
+    <img src="/src/assets/section-bg-4.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0 bg-black/35"></div>
+    <div class="relative z-10 h-full flex flex-col items-center justify-center text-center">
+      <p class="tracking-wide text-white uppercase font-bold font-['Jost',sans-serif]" style="font-size:13px; margin-bottom:10px">Discover the Full Menu</p>
+      <h2 class="font-['Cormorant_Garamond',Georgia,serif] text-white text-6xl md:text-8xl font-semibold">À la Carte</h2>
+    </div>
+  </section>
+
+  <section class="w-full self-stretch bg-black z-10 py-16 flex justify-center" style="margin-top: 80px; margin-bottom: 80px;">
+    <div class="w-full max-w-7xl px-8 flex">
+
+      <div class="relative overflow-hidden flex-1 group cursor-pointer">
+        <img src="/src/assets/img-20.jpg" alt="Drinks & Snacks" class="w-full aspect-3/4 object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+        <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-10 left-0 right-0 p-8 text-center">
+          <h3 class="font-['Cormorant_Garamond',Georgia,serif] text-white text-4xl font-light italic mb-3" style="margin-bottom: 10px;">Drinks & Snacks</h3>
+          <a href="#" class="discover-link text-white tracking-tight uppercase font-medium" style="font-size:13px">Discover More</a>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden flex-1 group cursor-pointer">
+        <img src="/src/assets/img-18.jpg" alt="Cocktails & Spirits" class="w-full aspect-3/4 object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+        <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-10 left-0 right-0 p-8 text-center">
+          <h3 class="font-['Cormorant_Garamond',Georgia,serif] text-white text-4xl font-light italic mb-3" style="margin-bottom: 10px;">Cocktails & Spirits</h3>
+          <a href="#" class="discover-link text-white tracking-tight uppercase font-medium" style="font-size:13px">Discover More</a>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden flex-1 group cursor-pointer">
+        <img src="/src/assets/img-19.jpg" alt="Wine List" class="w-full aspect-3/4 object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+        <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-10 left-0 right-0 p-8 text-center">
+          <h3 class="font-['Cormorant_Garamond',Georgia,serif] text-white text-4xl font-light italic mb-3" style="margin-bottom: 10px;">Wine List</h3>
+          <a href="#" class="discover-link text-white tracking-tight uppercase font-medium" style="font-size:13px">Discover More</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="w-full self-stretch bg-black z-10 py-24 flex justify-center" style="margin-bottom: 100px; margin-top: 40px;">
+    <div class="w-full max-w-7xl px-8 flex flex-col items-center text-center">
+
+      <p class="tracking-wide text-orange-500 uppercase mb-5 font-bold font-['Jost',sans-serif]" style="font-size:13px" style="margin-top: 60px; margin-bottom: 20px;">More at Patio Time Bar</p>
+      <h2 class="font-['Cormorant_Garamond',Georgia,serif] text-white font-semibold mb-8" style="margin-bottom: 20px; font-size:98px">Events & Shows</h2>
+      <p class="text-white leading-relaxed max-w-2xl mb-16 font-['Jost',sans-serif]" style="margin-bottom: 40px; font-size:18px">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.</p>
+
+      <div class="relative w-full flex items-center justify-center">
+        <button id="ev-prev" class="slick-arrow arrow-prev absolute left-0 z-10" style="width:80px; height:60px;" aria-label="Previous">
+          <span class="ln-a"></span>
+          <span class="ln-b"></span>
+        </button>
+
+        <div class="overflow-hidden" style="width:768px">
+          <div id="ev-track" class="flex" style="transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform;">
+            <div class="flex-none" style="width:768px"><img src="/src/assets/bar-events-768x512.jpg" alt="Event" style="width:768px;height:512px;object-fit:cover"></div>
+            <div class="flex-none" style="width:768px"><img src="/src/assets/sam-van-bussel-MrE4n1hzvLg-unsplash-768x512.jpg" alt="Event" style="width:768px;height:512px;object-fit:cover"></div>
+            <div class="flex-none" style="width:768px"><img src="/src/assets/louis-hansel-yLUvnCFI500-unsplash-768x512.jpg" alt="Event" style="width:768px;height:512px;object-fit:cover"></div>
+          </div>
+        </div>
+
+        <button id="ev-next" class="slick-arrow arrow-next absolute right-0 z-10" style="width:80px; height:60px;" aria-label="Next">
+          <span class="ln-a"></span>
+          <span class="ln-b"></span>
+        </button>
+      </div>
+
+      <div class="flex justify-center gap-3 mt-10" style="margin-top: 40px;">
+        <button class="ev-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="0"><span style="width:13px;height:13px;border-radius:50%;background:white;pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+        <button class="ev-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="1"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+        <button class="ev-dot" style="padding:4px;background:transparent;display:flex;align-items:center;justify-content:center;" data-i="2"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);pointer-events:none;display:block;transition:width 0.3s,height 0.3s,background 0.3s;"></span></button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="relative w-full self-stretch overflow-hidden z-10 min-h-[75vh]">
+    <img src="/src/assets/footer-bg-1.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-center">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center text-center px-8 py-24 gap-5 font-['Jost',sans-serif]" style="margin-top: 80px;">
+      <p class="text-[24px] tracking-widest text-white uppercase font-bold" style="margin-top: 20px">Patio.Time Bar</p>
+      <h2 class="font-['Cormorant_Garamond',Georgia,serif] text-white text-5xl md:text-6xl font-bold">Waiting For You Every Night</h2>
+      <p class="text-white text-lg mt-1">From 18:00 to 02:00</p>
+      <p class="text-white text-lg leading-relaxed">Via Santa Caterina D'Alessandria, 22/R,<br>50125 Firenze FI, Italy</p>
+      <p class="text-white text-lg">+39 055 1234567</p>
+      <a href="https://www.google.com/maps" class="mt-2 px-8 py-3 bg-orange-500 hover:bg-orange-600 hover:-translate-y-1.5 text-white text-[16px] tracking-wide uppercase transition-all duration-700 font-['Jost',sans-serif]" style="padding: 10px 30px; margin-top: 10px;">View in Google Maps</a>
+      <div class="flex items-center gap-6 mt-3" style="margin-top: 40px;">
+        <a href="#" class="text-white hover:text-orange-500 transition-colors duration-300" aria-label="Facebook">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="text-white hover:text-orange-500 transition-colors duration-300" aria-label="Twitter">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+        <a href="#" class="text-white hover:text-orange-500 transition-colors duration-300" aria-label="Instagram">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+        <a href="#" class="text-white hover:text-orange-500 transition-colors duration-300" aria-label="Pinterest">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        </a>
+        <a href="#" class="text-white hover:text-orange-500 transition-colors duration-300" aria-label="YouTube">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </a>
+      </div>
+      <p class="text-white text-xs mt-2">© PatioTime Theme 2022</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+
+<div id="reservation-modal" class="hidden fixed inset-0 bg-black/50 items-center justify-center z-50">
+  <button id="reservation-close" class="fixed top-10 right-10 text-white/70 hover:text-white transition-colors z-60" aria-label="Close" style="font-size:28px; line-height:1; background:none; border:none; cursor:pointer;">&#x2715;</button>
+  <div id="reservation-card" class="relative bg-black border border-white/50 rounded-sm max-w-2xl w-full mx-4 p-16 overflow-y-auto max-h-screen min-h-140">
+    
+    <div class="text-center mb-12 relative z-10" style="margin-top: 60px;">
+      <p class="text-orange-500 uppercase tracking-widest text-xs font-semibold mb-3" style="margin-bottom: 40px;">Online Reservation</p>
+      <h2 class="text-white text-6xl font-['Cormorant_Garamond',Georgia,serif] font-bold tracking-wide" style="margin-bottom: 40px;">Book A Table</h2>
+    </div>
+
+    <div class="relative z-10 space-y-12">
+      
+      <div class="grid grid-cols-3 gap-8" style="margin-bottom: 60px;">
+        <div class="relative" style="margin-left: 40px;">
+          <select class="appearance-none bg-transparent text-white border-b border-white/30 focus:border-white focus:outline-none pb-2 w-full text-base [&>option]:bg-zinc-900 pr-4">
+            <option>1 Person</option>
+            <option>2 People</option>
+            <option>3 People</option>
+            <option>4 People</option>
+            <option>5 People</option>
+            <option>6 People</option>
+            <option>7 People</option>
+            <option>8 People</option>
+            <option>9 People</option>
+            <option>10 People</option>
+            <option>11 People</option>
+            <option>12 People</option>
+            <option>13 People</option>
+            <option>14 People</option>
+            <option>15 People</option>
+            <option>16 People</option>
+            <option>17 People</option>
+            <option>18 People</option>
+            <option>19 People</option>
+            <option>20 People</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center text-white/60 text-xs">▼</div>
+        </div>
+        
+        <div class="relative">
+          <input type="date" value="2026-06-23" class="appearance-none bg-transparent text-white border-b border-white/30 focus:border-white focus:outline-none pb-2 w-full text-base scheme-dark">
+        </div>
+
+        <div class="relative"  style="margin-right: 40px;">
+          <select class="appearance-none bg-transparent text-white border-b border-white/30 focus:border-white focus:outline-none pb-2 w-full text-base [&>option]:bg-zinc-900 pr-4">
+            <option>10:00 AM</option>
+            <option>10:30 AM</option>
+            <option>11:00 AM</option>
+            <option>11:30 AM</option>
+            <option>12:00 PM</option>
+            <option>12:30 PM</option>
+            <option>1:00 PM</option>
+            <option>1:30 PM</option>
+            <option>2:00 PM</option>
+            <option>2:30 PM</option>
+            <option>3:00 PM</option>
+            <option>3:30 PM</option>
+            <option>4:00 PM</option>
+            <option>4:30 PM</option>
+            <option>5:00 PM</option>
+            <option>5:30 PM</option>
+            <option>6:00 PM</option>
+            <option>6:30 PM</option>
+            <option>7:00 PM</option>
+            <option>7:30 PM</option>
+            <option>8:00 PM</option>
+            <option>8:30 PM</option>
+            <option>9:00 PM</option>
+            <option>9:30 PM</option>
+            <option>10:00 PM</option>
+            <option>10:30 PM</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center text-white/60 text-xs">▼</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8" style="margin-top: 40px; margin-bottom: 80px;">
+        <div class="flex flex-col" style="margin-left: 40px;">
+          <label class="text-white text-sm mb-2 font-light">Your Name</label>
+          <input id="f-name" type="text" class="w-full bg-transparent border-b border-white/30 focus:border-white focus:outline-none text-white text-base pb-2">
+          <p id="f-name-err" class="text-red-500 mt-1 hidden font-['Jost',sans-serif]" style="font-size:18px">This field is required.</p>
+        </div>
+        <div class="flex flex-col">
+          <label class="text-white text-sm mb-2 font-light">Email</label>
+          <input id="f-email" type="email" class="w-full bg-transparent border-b border-white/30 focus:border-white focus:outline-none text-white text-base pb-2">
+          <p id="f-email-err" class="text-red-500 mt-1 hidden font-['Jost',sans-serif]" style="font-size:18px">This field is required.</p>
+        </div>
+        <div class="flex flex-col" style="margin-right: 40px;">
+          <label class="text-white text-sm mb-2 font-light">Phone</label>
+          <input id="f-phone" type="tel" class="w-full bg-transparent border-b border-white/30 focus:border-white focus:outline-none text-white text-base pb-2">
+          <p id="f-phone-err" class="text-red-500 mt-1 hidden font-['Jost',sans-serif]" style="font-size:18px">This field is required.</p>
+        </div>
+      </div>
+
+      <div class="relative" style="margin-top:40px; margin-right:40px; margin-left: 40px;">
+        <textarea class="w-full bg-transparent border-b border-white/30 focus:border-white focus:outline-none text-white text-base resize-none min-h-25 pb-2 placeholder:text-white placeholder:text-sm placeholder:font-light" placeholder="Special Requests"></textarea>
+      </div>
+      
+    </div>
+
+    <div class="mt-14 flex justify-center relative z-10" style="margin-bottom: 60px; margin-top: 20px;">
+      <button id="book-btn" class="bg-orange-600 hover:bg-orange-700 text-white uppercase tracking-widest font-bold px-12 py-4 text-sm transition-colors shadow-lg" style="padding: 10px; margin-top: 20px;">
+        Book A Table Now
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div id="lightbox" class="fixed inset-0 bg-black/50 z-60 hidden items-center justify-center" style="backdrop-filter:blur(2px);">
+  <button id="lb-close" style="position:absolute;top:20px;right:20px;background:none;border:none;color:white;font-size:2rem;cursor:pointer;line-height:1;opacity:0.8;transition:opacity 0.2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">&times;</button>
+  <img id="lightbox-img" src="" alt="" style="max-width:90vw;max-height:90vh;object-fit:contain;transform:scale(0.85);opacity:0;transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.35s ease;cursor:grab;user-select:none;">
+</div>
+
+<div id="side-menu-overlay" class="fixed inset-0 bg-black/70 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+<div id="side-menu" class="fixed top-0 right-0 h-full sm:w-[450px] w-full z-50 flex flex-col p-14 pt-10 translate-x-full transition-transform duration-300 overflow-y-auto" style="background: url('/src/assets/img-14.jpg') center/cover no-repeat;">
+  <div class="absolute inset-0 bg-black/75 pointer-events-none"></div>
+  
+  <button id="menu-close-btn" class="absolute top-10 right-10 z-20 text-white/60 hover:text-white transition-colors text-3xl font-light leading-none" aria-label="Close menu">&#x2715;</button>
+
+  <div class="relative z-10 flex flex-col h-full" style="margin-left: 60px; margin-right: 60px;">
+
+    <nav class="flex flex-col gap-2.5 mb-14" style="margin-bottom: 80px; margin-top: 80px;">
+      <a href="#" class="text-orange-500 font-['Jost',sans-serif] font-light tracking-wide hover:opacity-50 transition-opacity duration-500 ease-in-out" style="font-size:36px">Home</a>
+      <a href="#" class="text-white font-['Jost',sans-serif] font-light tracking-wide hover:opacity-50 transition-opacity duration-500 ease-in-out" style="font-size:36px">About</a>
+      <a href="#" class="text-white font-['Jost',sans-serif] font-light tracking-wide hover:opacity-50 transition-opacity duration-500 ease-in-out" style="font-size:36px">Our Menu</a>
+      <a href="#" class="text-white font-['Jost',sans-serif] font-light tracking-wide hover:opacity-50 transition-opacity duration-500 ease-in-out" style="font-size:36px">Reservation</a>
+      <a href="#" class="text-white font-['Jost',sans-serif] font-light tracking-wide hover:opacity-50 transition-opacity duration-500 ease-in-out" style="font-size:36px">Contact</a>
+    </nav>
+
+    <div class="flex flex-col gap-10 font-['Jost',sans-serif]">
+
+      <div class="flex flex-col" style="margin-bottom: 20px;">
+        <p class="text-white tracking-[0.25em] uppercase font-bold mb-4" style="margin-bottom: 20px; font-size:18px">Opening Hours</p>
+        <div class="flex flex-col gap-3 font-extralight" style="font-size:16px">
+          <div class="flex justify-between text-white"><span>Monday - Friday</span><span class="font-normal">09:00 - 22:00</span></div>
+          <div class="flex justify-between text-white"><span>Saturday</span><span class="font-normal">11:00 - 00:00</span></div>
+          <div class="flex justify-between text-white"><span>Sunday</span><span class="font-normal">11:00 - 23:00</span></div>
+          <div class="flex justify-between text-white pt-1"><span>* Happy hour</span><span class="font-normal">17:00 - 21:00</span></div>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-start text-left">
+        <p class="text-white tracking-[0.25em] uppercase font-bold mb-4 font-['Jost',sans-serif]" style="margin-bottom: 20px; font-size:18px">Our Location</p>
+        <div class="flex flex-col gap-4 font-extralight text-white items-start" style="font-size:16px">
+          <div class="flex items-start gap-3.5">
+            <svg class="w-4 h-4 shrink-0 mt-0.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            <span>Silk St, Barbican, London EC2Y 8DS, UK</span>
+          </div>
+          <div class="flex items-center gap-3.5">
+            <svg class="w-4 h-4 shrink-0 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+            <span>+39-055-123456</span>
+          </div>
+          <div class="flex items-center gap-3.5">
+            <svg class="w-4 h-4 shrink-0 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            <span>booking@patiotime.com</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script>
+    const modal = document.getElementById('reservation-modal');
+    const card = document.getElementById('reservation-card');
+    function openModal(e) { e.preventDefault(); modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    document.getElementById('find-table-btn').addEventListener('click', openModal);
+    document.getElementById('find-table-btn-sticky').addEventListener('click', openModal);
+    function closeModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+    document.getElementById('reservation-close').addEventListener('click', closeModal);
+
+    const sideMenu = document.getElementById('side-menu');
+    const sideOverlay = document.getElementById('side-menu-overlay');
+    function openMenu() {
+      sideOverlay.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        sideOverlay.classList.add('opacity-100');
+        sideMenu.classList.remove('translate-x-full');
+      });
+    }
+    function closeMenu() {
+      sideOverlay.classList.remove('opacity-100');
+      sideMenu.classList.add('translate-x-full');
+      setTimeout(() => sideOverlay.classList.add('hidden'), 300);
+    }
+    document.getElementById('menu-open-btn').addEventListener('click', openMenu);
+    document.getElementById('menu-close-btn').addEventListener('click', closeMenu);
+    sideOverlay.addEventListener('click', closeMenu);
+
+    (function () {
+      const track = document.getElementById('c-track');
+      const dots = Array.from(document.querySelectorAll('.c-dot'));
+      const TOTAL = 6;
+      let cur = 0;
+
+      function stepPx() { return track.children[0].offsetWidth + 60; }
+
+      function moveTo(n, animate) {
+        if (!animate) track.style.transition = 'none';
+        track.style.transform = `translateX(-${n * stepPx()}px)`;
+        if (!animate) requestAnimationFrame(() => requestAnimationFrame(() => { track.style.transition = 'transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)'; }));
+        const di = n % TOTAL;
+        dots.forEach((d, i) => { const s = d.querySelector('span'); s.style.background = i === di ? 'white' : 'rgba(255,255,255,0.3)'; s.style.width = s.style.height = i === di ? '10px' : '8px'; });
+      }
+
+      function advance() {
+        cur++;
+        moveTo(cur, true);
+        if (cur === TOTAL) setTimeout(() => { moveTo(0, false); cur = 0; }, 800);
+      }
+
+      let timer = setInterval(advance, 3000);
+      function resetTimer() { clearInterval(timer); timer = setInterval(advance, 3000); }
+
+      document.getElementById('c-next').addEventListener('click', () => { advance(); resetTimer(); });
+      document.getElementById('c-prev').addEventListener('click', () => { if (cur > 0) { cur--; moveTo(cur, true); resetTimer(); } });
+      dots.forEach((d, i) => d.addEventListener('click', () => { cur = i; moveTo(i, true); resetTimer(); }));
+
+      // drag
+      let dragStart = null, dragging = false;
+      const wrapper = track.parentElement;
+      wrapper.style.cursor = 'grab';
+
+      function onDragStart(x) { dragStart = x; dragging = false; track.style.transition = 'none'; }
+      function onDragMove(x) {
+        if (dragStart === null) return;
+        const dx = x - dragStart;
+        if (Math.abs(dx) > 5) dragging = true;
+        if (dragging) track.style.transform = `translateX(${-cur * stepPx() + dx}px)`;
+      }
+      function onDragEnd(x) {
+        if (dragStart === null) return;
+        const dx = x - dragStart;
+        track.style.transition = 'transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+        if (dragging && Math.abs(dx) > 40) {
+          if (dx < 0 && cur < TOTAL - 1) cur++;
+          else if (dx > 0 && cur > 0) cur--;
+        }
+        moveTo(cur, true);
+        resetTimer();
+        if (dragging) track.dataset.wasDragged = '1';
+        dragStart = null; dragging = false;
+      }
+
+      wrapper.addEventListener('mousedown', e => { wrapper.style.cursor = 'grabbing'; onDragStart(e.clientX); });
+      window.addEventListener('mousemove', e => { if (dragStart !== null) onDragMove(e.clientX); });
+      window.addEventListener('mouseup', e => { wrapper.style.cursor = 'grab'; onDragEnd(e.clientX); });
+      wrapper.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true });
+      wrapper.addEventListener('touchmove', e => { if (dragging) e.preventDefault(); onDragMove(e.touches[0].clientX); }, { passive: false });
+      wrapper.addEventListener('touchend', e => onDragEnd(e.changedTouches[0].clientX));
+      // prevent img drag interfering with carousel drag
+      track.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+    })();
+
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const cTrack = document.getElementById('c-track');
+      const imgs = Array.from(document.querySelectorAll('#c-track img')).slice(0, 6);
+      let curIdx = 0;
+
+      const DUR = 180;
+      const EASE = 'cubic-bezier(0.25,0.46,0.45,0.94)';
+
+      function showImg(idx, dir) {
+        curIdx = (idx + imgs.length) % imgs.length;
+        const outX = dir >= 0 ? '-110vw' : '110vw';
+        const inX  = dir >= 0 ? '110vw' : '-110vw';
+        lbImg.style.transition = `transform ${DUR}ms ${EASE}, opacity ${DUR}ms ease`;
+        lbImg.style.transform = `scale(1) translateX(${outX})`;
+        setTimeout(() => {
+          lbImg.style.transition = 'none';
+          lbImg.src = imgs[curIdx].src;
+          lbImg.style.transform = `scale(1) translateX(${inX})`;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            lbImg.style.transition = `transform ${DUR}ms ${EASE}, opacity ${DUR}ms ease`;
+            lbImg.style.transform = 'scale(1) translateX(0)';
+          }));
+        }, DUR);
+      }
+
+      function closeLightbox() {
+        lbImg.style.transition = `transform 350ms ${EASE}, opacity 350ms ease`;
+        lbImg.style.transform = 'scale(0.85)';
+        lbImg.style.opacity = '0';
+        setTimeout(() => { lb.classList.add('hidden'); lb.classList.remove('flex'); }, 350);
+      }
+
+      imgs.forEach((img, i) => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+          if (cTrack.dataset.wasDragged) { delete cTrack.dataset.wasDragged; return; }
+          curIdx = i;
+          lbImg.src = imgs[curIdx].src;
+          lb.classList.remove('hidden');
+          lb.classList.add('flex');
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            lbImg.style.transform = 'scale(1)';
+            lbImg.style.opacity = '1';
+          }));
+        });
+      });
+
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('flex')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showImg(curIdx - 1, -1);
+        if (e.key === 'ArrowRight') showImg(curIdx + 1, 1);
+      });
+
+      let dragX = null, wasDragged = false;
+      lb.addEventListener('click', e => { if (!wasDragged && e.target === lb) closeLightbox(); wasDragged = false; });
+      lbImg.addEventListener('mousedown', e => {
+        dragX = e.clientX;
+        lbImg.style.cursor = 'grabbing';
+        lbImg.style.transition = 'none';
+        e.preventDefault();
+      });
+      window.addEventListener('mousemove', e => {
+        if (dragX === null) return;
+        const dx = e.clientX - dragX;
+        lbImg.style.transform = `scale(1) translateX(${dx}px)`;
+      });
+      window.addEventListener('mouseup', e => {
+        if (dragX === null) return;
+        const dx = e.clientX - dragX;
+        dragX = null;
+        lbImg.style.cursor = 'grab';
+        if (Math.abs(dx) > 10) wasDragged = true;
+        if (Math.abs(dx) > 80) {
+          const dir = dx < 0 ? 1 : -1;
+          showImg(curIdx + dir, dir);
+        } else {
+          lbImg.style.transition = `transform ${DUR}ms ${EASE}`;
+          lbImg.style.transform = 'scale(1) translateX(0)';
+        }
+      });
+    })();
+
+    (function () {
+      const track = document.getElementById('ev-track');
+      const dots = Array.from(document.querySelectorAll('.ev-dot'));
+      const TOTAL = 3;
+      let cur = 0;
+
+      function moveTo(n) {
+        cur = (n + TOTAL) % TOTAL;
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        dots.forEach((d, i) => {
+          const s = d.querySelector('span');
+          s.style.background = i === cur ? 'white' : 'rgba(255,255,255,0.3)';
+          s.style.width = s.style.height = i === cur ? '10px' : '8px';
+        });
+      }
+
+      let timer = setInterval(() => moveTo(cur + 1), 3000);
+      function resetTimer() { clearInterval(timer); timer = setInterval(() => moveTo(cur + 1), 3000); }
+
+      document.getElementById('ev-next').addEventListener('click', () => { moveTo(cur + 1); resetTimer(); });
+      document.getElementById('ev-prev').addEventListener('click', () => { moveTo(cur - 1); resetTimer(); });
+      dots.forEach((d, i) => d.addEventListener('click', () => { moveTo(i); resetTimer(); }));
+
+      // drag
+      const wrapper = track.parentElement;
+      let dragStart = null, dragging = false;
+
+      function onDragStart(x) { dragStart = x; dragging = false; track.style.transition = 'none'; }
+      function onDragMove(x) {
+        if (dragStart === null) return;
+        const dx = x - dragStart;
+        if (Math.abs(dx) > 5) dragging = true;
+        if (dragging) track.style.transform = `translateX(calc(-${cur * 100}% + ${dx}px))`;
+      }
+      function onDragEnd(x) {
+        if (dragStart === null) return;
+        const dx = x - dragStart;
+        track.style.transition = 'transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+        if (dragging && Math.abs(dx) > 40) moveTo(dx < 0 ? cur + 1 : cur - 1);
+        else moveTo(cur);
+        resetTimer();
+        if (dragging) track.dataset.wasDragged = '1';
+        dragStart = null; dragging = false;
+      }
+
+      wrapper.addEventListener('mousedown', e => onDragStart(e.clientX));
+      window.addEventListener('mousemove', e => { if (dragStart !== null) onDragMove(e.clientX); });
+      window.addEventListener('mouseup', e => onDragEnd(e.clientX));
+      wrapper.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true });
+      wrapper.addEventListener('touchmove', e => { if (dragging) e.preventDefault(); onDragMove(e.touches[0].clientX); }, { passive: false });
+      wrapper.addEventListener('touchend', e => onDragEnd(e.changedTouches[0].clientX));
+      track.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+    })();
+    (function () {
+      const fields = [
+        { input: 'f-name', err: 'f-name-err' },
+        { input: 'f-email', err: 'f-email-err' },
+        { input: 'f-phone', err: 'f-phone-err' },
+      ];
+      function validate(f) {
+        const empty = !document.getElementById(f.input).value.trim();
+        document.getElementById(f.err).classList.toggle('hidden', !empty);
+        return !empty;
+      }
+      function validateAll() { fields.map(validate); }
+      const srTextarea = document.querySelector('#reservation-card textarea');
+      let srVisited = false;
+      srTextarea.addEventListener('focus', () => { srVisited = true; });
+      srTextarea.addEventListener('blur', () => { if (srVisited) validateAll(); });
+      document.getElementById('book-btn').addEventListener('click', validateAll);
+    })();
+
+    (function() {
+      const stickyNav = document.getElementById('sticky-nav');
+      const header = document.querySelector('header');
+      let lastScroll = 0;
+      let visible = false;
+      window.addEventListener('scroll', function() {
+        const cur = window.scrollY;
+        const headerBottom = header.offsetTop + header.offsetHeight;
+        if (cur <= headerBottom) {
+          visible = false;
+          stickyNav.classList.add('-translate-y-full');
+        } else if (cur < lastScroll - 5) {
+          visible = true;
+          stickyNav.classList.remove('-translate-y-full');
+        } else if (visible && cur > lastScroll + 5) {
+          visible = false;
+          stickyNav.classList.add('-translate-y-full');
+        }
+        lastScroll = cur;
+      });
+    })();
+  </script>
+</body>
+</html>
